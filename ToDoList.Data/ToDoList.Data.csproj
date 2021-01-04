@@ -51,11 +51,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\TaskDbContext.cs" />
+    <Compile Include="Entities\Abstract\BaseEntity.cs" />
+    <Compile Include="Entities\Abstract\IBaseEntity.cs" />
+    <Compile Include="Entities\TaskEntity.cs" />
+    <Compile Include="Migrations\202012280325494_TaskEntity.cs" />
+    <Compile Include="Migrations\202012280325494_TaskEntity.designer.cs">
+      <DependentUpon>202012280325494_TaskEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Abstract\ITaskRepository.cs" />
+    <Compile Include="Repositories\TaskRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202012280325494_TaskEntity.resx">
+      <DependentUpon>202012280325494_TaskEntity.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
