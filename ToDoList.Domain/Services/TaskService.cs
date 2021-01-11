@@ -53,9 +53,10 @@ namespace ToDoList.Domain.Services
                 var config = new MapperConfiguration(cfg => cfg.CreateMap<TaskEntity, TaskModel>());
                 var mapper = new Mapper(config);
 
-                TaskModel addTask = mapper.Map<TaskModel>(id);
-                _taskRepository.GetTaskById(id);
-                return addTask;
+                var getTask = _taskRepository.GetTaskById(id);
+                TaskModel task = mapper.Map<TaskModel>(getTask);
+
+                return task;
             }
             throw new ArgumentException();
         }
