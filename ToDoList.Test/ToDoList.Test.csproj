@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Repositories\TaskRepositoryTest.cs" />
+    <Compile Include="Domain\Services\TaskServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -82,7 +83,12 @@
       <Project>{7dc8ca6f-0365-4584-b976-d93ca908e54a}</Project>
       <Name>ToDoList.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ToDoList.Domain\ToDoList.Domain.csproj">
+      <Project>{CE865911-0A15-4DD5-B335-5A75ABBAA8FF}</Project>
+      <Name>ToDoList.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
