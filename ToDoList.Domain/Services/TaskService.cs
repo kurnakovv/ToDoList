@@ -25,6 +25,10 @@ namespace ToDoList.Domain.Services
             var mapper = new Mapper(config);
 
             var tasks = mapper.Map<IEnumerable<TaskModel>>(_taskRepository.GetAllTasks());
+
+            if (tasks is null)
+                throw new Exception();
+
             return tasks;
         }
 
@@ -41,9 +45,11 @@ namespace ToDoList.Domain.Services
                     _taskRepository.AddTask(addTask);
                     return task;
                 }
+
+                throw new Exception("Cannot be add task with empty fields!");
             }
 
-            throw new ArgumentException();
+            throw new Exception("Cannot be add empty task!");
         }
 
         public TaskModel GetTaskById(string id)
@@ -54,11 +60,16 @@ namespace ToDoList.Domain.Services
                 var mapper = new Mapper(config);
 
                 var getTask = _taskRepository.GetTaskById(id);
+
+                if (getTask is null)
+                    throw new System.Data.Entity.Core.ObjectNotFoundException("Task not found");
+
                 TaskModel task = mapper.Map<TaskModel>(getTask);
 
                 return task;
             }
-            throw new ArgumentException();
+
+            throw new Exception("Task id cannot be empty");
         }
 
         public TaskModel UpdateTask(TaskModel task)
@@ -77,9 +88,11 @@ namespace ToDoList.Domain.Services
                     _taskRepository.UpdateTask(updateTask);
                     return task;
                 }
+
+                throw new Exception("Cannot be update task with empty fields!");
             }
 
-            throw new ArgumentException();
+            throw new Exception("Cannot be update empty task!");
         }
 
         public void DeleteTaskById(string id)
