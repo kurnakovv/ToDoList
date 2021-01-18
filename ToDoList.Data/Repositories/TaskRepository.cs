@@ -91,9 +91,9 @@ namespace ToDoList.Data.Repositories
 
         private bool IsTaskPropertiesNull(TaskEntity taskEntity)
         {
-            if (string.IsNullOrEmpty(taskEntity.Id) ||
-               string.IsNullOrEmpty(taskEntity.Name) ||
-               string.IsNullOrEmpty(taskEntity.Description) ||
+            if (string.IsNullOrWhiteSpace(taskEntity.Id) ||
+               string.IsNullOrWhiteSpace(taskEntity.Name) ||
+               string.IsNullOrWhiteSpace(taskEntity.Description) ||
                taskEntity.DateTime == null)
             {
                 return true;

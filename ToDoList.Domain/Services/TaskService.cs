@@ -115,8 +115,8 @@ namespace ToDoList.Domain.Services
 
         private bool IsTaskPropertiesNull(TaskModel task)
         {
-            if (string.IsNullOrEmpty(task.Name) ||
-                string.IsNullOrEmpty(task.Description) ||
+            if (string.IsNullOrWhiteSpace(task.Name) ||
+                string.IsNullOrWhiteSpace(task.Description) ||
                 task.DateTime == null)
             {
                 return true;
