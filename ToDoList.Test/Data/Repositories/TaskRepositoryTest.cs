@@ -81,25 +81,6 @@ namespace ToDoList.Test.Data.Repositories
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ApplicationException))]
-        public void CanotAddInValidTask_ReturnException()
-        {
-            // Arrange
-            TaskEntity taskEntity = new TaskEntity
-            {
-                Id = "dfas",
-                Completeness = false,
-                DateTime = DateTime.Now,
-                Description = "",
-                Name = "   ",
-            };
-            ITaskRepository taskRepository = new TaskRepository();
-
-            // Act
-            taskRepository.AddTask(taskEntity);
-        }
-
-        [TestMethod]
         public void CanUpdateValidTask_ReturnTask() // Do not work because method Update dont work.
         {
             // Arrange
@@ -118,25 +99,6 @@ namespace ToDoList.Test.Data.Repositories
 
             // Assert
             Assert.AreEqual(taskEntity, result);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ApplicationException))]
-        public void CanotUpdateInValidTask_ReturnException()
-        {
-            // Arrange
-            TaskEntity taskEntity = new TaskEntity
-            {
-                Id = "dfas",
-                Completeness = false,
-                DateTime = DateTime.Now,
-                Description = "",
-                Name = "   ",
-            };
-            ITaskRepository taskRepository = new TaskRepository();
-
-            // Act
-            taskRepository.UpdateTask(taskEntity);
         }
 
         [TestMethod]
