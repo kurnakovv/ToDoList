@@ -70,6 +70,10 @@ namespace ToDoList.Data.Repositories
             if (!string.IsNullOrEmpty(id))
             {
                 var removeTask = FindTaskById(id);
+
+                if (IsTaskNull(removeTask))
+                    throw new Exception("Empty task cannot be deleted!");
+
                 _taskDbContext.Tasks.Remove(removeTask);
                 Save();
             }
