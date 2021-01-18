@@ -35,7 +35,7 @@ namespace ToDoList.Test.Domain.Services
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(Exception))]
         public void CanotAddInvalidTask_ReturnException()
         {
             // Arrange
@@ -47,13 +47,17 @@ namespace ToDoList.Test.Domain.Services
                 Description = " ",
                 Name = "",
             };
+
+            TaskModel taskModel2 = null;
             ITaskService taskService = new TaskService();
 
             // Act
-            var result = taskService.AddTask(taskModel);
+            var result1 = taskService.AddTask(taskModel);
+            var result2 = taskService.AddTask(taskModel2);
 
             // Assert
-            Assert.AreEqual(taskModel, result);
+            Assert.AreEqual(taskModel, result1);
+            Assert.AreEqual(taskModel, result2);
         }
 
         [TestMethod]
@@ -86,13 +90,35 @@ namespace ToDoList.Test.Domain.Services
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(Exception))]
         public void CannotGetTaskByInvalidId_ReturnException()
         {
             // Arrange
             TaskModel taskModel = new TaskModel()
             {
                 Id = null,
+                Completeness = false,
+                DateTime = DateTime.Now,
+                Description = "Description",
+                Name = "Name",
+            };
+            ITaskService taskService = new TaskService();
+
+            // Act
+            var result = taskService.GetTaskById(taskModel.Id);
+
+            // Assert
+            Assert.AreEqual(taskModel, result);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(System.Data.Entity.Core.ObjectNotFoundException))]
+        public void CannotGetTaskByIdIfTaskNotFound_ReturnException()
+        {
+            // Arrange
+            TaskModel taskModel = new TaskModel()
+            {
+                Id = "Guid1",
                 Completeness = false,
                 DateTime = DateTime.Now,
                 Description = "Description",
@@ -132,7 +158,7 @@ namespace ToDoList.Test.Domain.Services
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(Exception))]
         public void CannotUpdateInvalidTask_ReturnException()
         {
             // Arrange
@@ -144,13 +170,18 @@ namespace ToDoList.Test.Domain.Services
                 Description = " ",
                 Name = null,
             };
+
+            TaskModel taskModel2 = null;
+
             ITaskService taskService = new TaskService();
 
             // Act
-            var result = taskService.UpdateTask(taskModel);
+            var result1 = taskService.UpdateTask(taskModel);
+            var result2 = taskService.UpdateTask(taskModel2);
 
             // Assert
-            Assert.AreEqual(taskModel, result);
+            Assert.AreEqual(taskModel, result1);
+            Assert.AreEqual(taskModel, result2);
         }
     }
 }
