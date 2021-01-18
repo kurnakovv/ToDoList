@@ -25,58 +25,34 @@ namespace ToDoList.Data.Repositories
 
         public TaskEntity AddTask(TaskEntity task)
         {
-            if (!IsTaskNull(task))
-            {
-                if (!IsTaskPropertiesNull(task))
-                {
-                    var addTask = _taskDbContext.Tasks.Add(task);
-                    Save();
+            var addTask = _taskDbContext.Tasks.Add(task);
+            Save();
 
-                    return addTask;
-                }
-            }
-
-            throw new ApplicationException();
+            return addTask;
         }
 
         public TaskEntity GetTaskById(string id)
         {
-            if (!string.IsNullOrEmpty(id))
-            {
-                var task = FindTaskById(id);
-                return task;
-            }
-
-            throw new ApplicationException();
+            var task = FindTaskById(id);
+            return task;
         }
 
         public TaskEntity UpdateTask(TaskEntity task)
         {
-            if (!IsTaskNull(task))
-            {
-                if (!IsTaskPropertiesNull(task))
-                {
-                    _taskDbContext.Entry(task).State = EntityState.Modified;
-                    Save();
-                    return task;
-                }
-            }
-
-            throw new ApplicationException();
+            _taskDbContext.Entry(task).State = EntityState.Modified;
+            Save();
+            return task;
         }
 
         public void DeleteTaskById(string id)
         {
-            if (!string.IsNullOrEmpty(id))
-            {
-                var removeTask = FindTaskById(id);
+            var removeTask = FindTaskById(id);
 
-                if (IsTaskNull(removeTask))
-                    throw new Exception("Empty task cannot be deleted!");
+            if (IsTaskNull(removeTask))
+                throw new Exception("Empty task cannot be deleted!");
 
-                _taskDbContext.Tasks.Remove(removeTask);
-                Save();
-            }
+            _taskDbContext.Tasks.Remove(removeTask);
+            Save();
         }
 
         private bool IsTaskNull(TaskEntity task)
