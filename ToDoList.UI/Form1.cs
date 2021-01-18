@@ -7,28 +7,33 @@ using ToDoList.Domain.Services.Abstract;
 
 namespace ToDoList.UI
 {
-    public partial class Form1 : Form
+    public partial class ToDoList : Form
     {
         private readonly BindingSource _bindingSourceTasks = new BindingSource();
         private readonly BindingSource _bindingSourceCurrentTask = new BindingSource();
         private readonly ITaskService _taskService = new TaskService();
 
-        public Form1()
+        public ToDoList()
         {
             InitializeComponent();
 
             SetBindings();
             Load += Form1_Load;
+            LoadTasks();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             dataGridView1.MouseClick += (s, a) => SetCurrentTask();
-            LoadTasks();
+            dataGridView1.MouseClick += (s, a) => EnableEditPanel();
+
+            if (dataGridView1.CurrentCell != null)
+                panel1.Visible = true;
         }
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
+            panel1.Visible = true;
             _bindingSourceTasks.MoveLast();
             _bindingSourceTasks.Add(new TaskModel());
             _bindingSourceTasks.MoveNext();
@@ -46,6 +51,8 @@ namespace ToDoList.UI
                 try
                 {
                     _taskService.AddTask(currentTask);
+                    panel1.Visible = false;
+                    MessageBox.Show($"The task \"{currentTask.Name}\" added.");
                 }
                 catch(Exception ex)
                 {
@@ -59,7 +66,9 @@ namespace ToDoList.UI
                     //_taskService.UpdateTask(currentTasks);
                     _taskService.AddTask(currentTask);
                     _taskService.DeleteTaskById(currentTasks.Id);
-                    
+                    panel1.Visible = false;
+                    MessageBox.Show($"The task \"{currentTask.Name}\" updated.");
+
                     // TODO: Edited exception when we use method UpdateTask
                 }
                 catch(Exception ex)
@@ -79,6 +88,8 @@ namespace ToDoList.UI
             {
                 _taskService.DeleteTaskById(currentTask.Id);
                 _bindingSourceTasks.Remove(currentTask);
+                panel1.Visible = false;
+                MessageBox.Show($"The task \"{currentTask.Name}\" deleted.");
             }
             catch(Exception ex)
             {
@@ -92,7 +103,6 @@ namespace ToDoList.UI
             {
                 IEnumerable<TaskModel> tasks = _taskService.GetAllTasks();
                 _bindingSourceTasks.DataSource = tasks;
-                SetCurrentTask();
             }
             catch(Exception)
             {
@@ -111,6 +121,11 @@ namespace ToDoList.UI
                 _bindingSourceCurrentTask.List[0] = new TaskModel();
             }
             _bindingSourceCurrentTask.ResetItem(0);
+        }
+
+        private void EnableEditPanel()
+        {
+            panel1.Visible = true;
         }
 
         private void SetBindings()
