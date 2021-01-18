@@ -12,7 +12,7 @@ namespace ToDoList.UI
         private readonly BindingSource _bindingSourceTasks = new BindingSource();
         private readonly BindingSource _bindingSourceCurrentTask = new BindingSource();
         private readonly ITaskService _taskService = new TaskService();
-        
+
         public Form1()
         {
             InitializeComponent();
@@ -43,14 +43,29 @@ namespace ToDoList.UI
 
             if (dataGridView1.CurrentCell.Value == null)
             {
-                _taskService.AddTask(currentTask);
+                try
+                {
+                    _taskService.AddTask(currentTask);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
             else
             {
-                //_taskService.UpdateTask(currentTasks);
-                _taskService.DeleteTaskById(currentTasks.Id);
-                _taskService.AddTask(currentTask);
-                // TODO: Edited exception when we use method UpdateTask
+                try
+                {
+                    //_taskService.UpdateTask(currentTasks);
+                    _taskService.AddTask(currentTask);
+                    _taskService.DeleteTaskById(currentTasks.Id);
+                    
+                    // TODO: Edited exception when we use method UpdateTask
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
 
             LoadTasks();
@@ -60,21 +75,29 @@ namespace ToDoList.UI
         {
             TaskModel currentTask = _bindingSourceTasks.Current as TaskModel;
 
-            if (currentTask != null)
+            try
             {
-                if (currentTask.Id != null)
-                {
-                    _taskService.DeleteTaskById(currentTask.Id);
-                    _bindingSourceTasks.Remove(currentTask);
-                }
+                _taskService.DeleteTaskById(currentTask.Id);
+                _bindingSourceTasks.Remove(currentTask);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void LoadTasks()
         {
-            IEnumerable<TaskModel> tasks = _taskService.GetAllTasks();
-            _bindingSourceTasks.DataSource = tasks;
-            SetCurrentTask();
+            try
+            {
+                IEnumerable<TaskModel> tasks = _taskService.GetAllTasks();
+                _bindingSourceTasks.DataSource = tasks;
+                SetCurrentTask();
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Database not connected");
+            }
         }
 
         private void SetCurrentTask()
