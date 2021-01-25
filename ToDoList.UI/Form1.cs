@@ -95,6 +95,8 @@ namespace ToDoList.UI
             {
                 MessageBox.Show(ex.Message);
             }
+
+            LoadTasks();
         }
 
         private void LoadTasks()
@@ -103,6 +105,16 @@ namespace ToDoList.UI
             {
                 IEnumerable<TaskModel> tasks = _taskService.GetAllTasks();
                 _bindingSourceTasks.DataSource = tasks;
+
+                // Protection against click on empty DataGridView
+                if (_bindingSourceTasks.Count != 0)
+                {
+                    dataGridView1.Enabled = true;
+                }
+                else
+                {
+                    dataGridView1.Enabled = false;
+                }
             }
             catch(Exception)
             {
