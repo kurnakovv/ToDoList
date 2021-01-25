@@ -5,6 +5,17 @@
 
 ![MainMenu](ImgForReadme/MainMenu.png)
 
+## Table of contents
+* [Technologies](#technologies)
+* [Lite UML](#lite-uml)
+* [Layers](#layers)
+* [How to start](#how-to-start)
+* [Versions](#versions)
+* [How to participate](#how-to-participate)
+* [Features](#features)
+* [To Do](#to-do)
+* [Special thanks to](#special-thanks-to)
+
 ## Technologies
 - Windows Forms
 - EntityFramework - v6.4.4
@@ -46,6 +57,7 @@ I use three-tiered architecture:
 
 ## Versions
 v1.0.0 - CRUD functional with user-friendly interface.
+v1.0.1 - Added table of contents
 
 ## How to participate
 throw all your request in "pullRequests" branch
