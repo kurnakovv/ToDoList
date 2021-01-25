@@ -49,3 +49,21 @@ v1.0.0 - CRUD functional with user-friendly interface.
 
 ## How to participate
 throw all your request in "pullRequests" branch
+
+## Features
+- CRUD functional
+- User-friendly interface
+
+## To Do
+- Mark whether the task is completed or not
+- Task menu
+- Fix bug with task update
+
+## Status
+I'm actively developing this project
+
+## Special thanks to:
+- You can be the first :)
+
+## Connect with me
+If you want to improve something or fix a bug, you can send me an email maxmamamama@gmail.com
