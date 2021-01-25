@@ -11,3 +11,13 @@
 - AutoMapper - v10.1.1
 - MsTest - v2.1.1
 - Moq - v4.15.2
+
+## Lite UML
+![LiteUML](ImgForReadme/LiteUML.png)
+
+## Layers
+I use three-tiered architecture:
+- ToDoList.Data - layer for data storage
+- ToDoList.Domain - later for BL
+- ToDoList.Test - layer for tests
+- ToDoList.UI - layer for user intrerface (WF)
