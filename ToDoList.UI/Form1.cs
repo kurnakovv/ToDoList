@@ -33,6 +33,7 @@ namespace ToDoList.UI
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
+            AddBtn.Enabled = false;
             panel1.Visible = true;
             _bindingSourceTasks.MoveLast();
             _bindingSourceTasks.Add(new TaskModel());
@@ -88,7 +89,6 @@ namespace ToDoList.UI
             {
                 _taskService.DeleteTaskById(currentTask.Id);
                 _bindingSourceTasks.Remove(currentTask);
-                panel1.Visible = false;
                 MessageBox.Show($"The task \"{currentTask.Name}\" deleted.");
             }
             catch(Exception ex)
@@ -96,6 +96,7 @@ namespace ToDoList.UI
                 MessageBox.Show(ex.Message);
             }
 
+            panel1.Visible = false;
             LoadTasks();
         }
 
@@ -115,6 +116,8 @@ namespace ToDoList.UI
                 {
                     dataGridView1.Enabled = false;
                 }
+
+                AddBtn.Enabled = true;
             }
             catch(Exception)
             {
