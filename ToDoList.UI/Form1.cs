@@ -96,7 +96,6 @@ namespace ToDoList.UI
                 MessageBox.Show(ex.Message);
             }
 
-            panel1.Visible = false;
             LoadTasks();
         }
 
@@ -115,6 +114,7 @@ namespace ToDoList.UI
                 else
                 {
                     dataGridView1.Enabled = false;
+                    panel1.Visible = false;
                 }
 
                 AddBtn.Enabled = true;
