@@ -43,3 +43,9 @@ I use three-tiered architecture:
         public DbSet<TaskEntity> Tasks { get; set; }
     }
 ```
+
+## Versions
+v1.0.0 - CRUD functional with user-friendly interface.
+
+## How to participate
+throw all your request in "pullRequests" branch
