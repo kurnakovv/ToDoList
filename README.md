@@ -21,3 +21,25 @@ I use three-tiered architecture:
 - ToDoList.Domain - later for BL
 - ToDoList.Test - layer for tests
 - ToDoList.UI - layer for user intrerface (WF)
+
+## How to start
+- Go to ToDoList.Data/App.config
+- Change path in connectionStrings:
+``` XML
+<connectionStrings>
+    <add name = "TaskDbContext"
+         providerName="System.Data.SqlClient"
+         connectionString="Server=(LocalDB)\MSSQLLocalDB;
+                           Database=ToDoList;
+                           Integrated Security=True;"/> <!-- change here. -->
+  </connectionStrings>
+```
+
+- If you need change DB name go to ToDoList.Data/Context/TaskDbContext.cs:
+``` CS
+    public class TaskDbContext : DbContext
+    {
+        public TaskDbContext() : base("ToDoList") { } // change here.
+        public DbSet<TaskEntity> Tasks { get; set; }
+    }
+```
