@@ -84,21 +84,35 @@ namespace ToDoList.Test.Data.Repositories
         public void CanUpdateValidTask_ReturnTask() // Do not work because method Update dont work.
         {
             // Arrange
-            TaskEntity taskEntity = new TaskEntity
+            var taskEntity = new TaskEntity
             {
-                Id = "Guid1",
+                Id = Guid.NewGuid().ToString(),
                 Completeness = false,
                 DateTime = DateTime.Now,
                 Description = "Description",
                 Name = "Name",
             };
+
+            var taskEntityUPDATE = new TaskEntity
+            {
+                Id = taskEntity.Id,
+                Completeness = true,
+                DateTime = DateTime.Now,
+                Description = "Description 2",
+                Name = "Name 2",
+            };
+
             ITaskRepository taskRepository = new TaskRepository();
+            taskRepository.AddTask(taskEntity);
 
             // Act
-            var result = taskRepository.UpdateTask(taskEntity);
+            var result = taskRepository.UpdateTask(taskEntityUPDATE);
 
             // Assert
-            Assert.AreEqual(taskEntity, result);
+            Assert.AreEqual(taskEntity.Name, result.Name);
+            Assert.AreEqual(taskEntity.Description, result.Description);
+            Assert.AreEqual(taskEntity.DateTime, result.DateTime);
+            Assert.AreEqual(taskEntity.Id, result.Id);
         }
 
         [TestMethod]

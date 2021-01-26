@@ -39,7 +39,14 @@ namespace ToDoList.Data.Repositories
 
         public TaskEntity UpdateTask(TaskEntity task)
         {
-            _taskDbContext.Entry(task).State = EntityState.Modified;
+            var returnedTask = _taskDbContext.Tasks
+                                             .SingleOrDefault(dbTask => dbTask.Id == task.Id);
+
+            returnedTask.Name = task.Name;
+            returnedTask.Completeness = task.Completeness;
+            returnedTask.DateTime = task.DateTime;
+            returnedTask.Description = task.Description;
+
             Save();
             return task;
         }
