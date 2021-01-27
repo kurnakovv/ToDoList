@@ -44,16 +44,21 @@ namespace ToDoList.UI
 
         private void EditBtn_Click(object sender, EventArgs e)
         {
-            TaskModel currentTask = _bindingSourceCurrentTask.Current as TaskModel;
-            TaskModel currentTasks = _bindingSourceTasks.Current as TaskModel;
+            TaskModel newTask = _bindingSourceCurrentTask.Current as TaskModel;
+            var oldTask = _bindingSourceTasks.Current as TaskModel;
+
+            // For a new Task, a new Id is created, this should not be the case, 
+            // for new task the previous Id from oldTask.
+            newTask.Id = oldTask.Id;
+
 
             if (dataGridView1.CurrentCell.Value == null)
             {
                 try
                 {
-                    _taskService.AddTask(currentTask);
+                    _taskService.AddTask(newTask);
                     panel1.Visible = false;
-                    MessageBox.Show($"The task \"{currentTask.Name}\" added.");
+                    MessageBox.Show($"The task \"{newTask.Name}\" added.");
                 }
                 catch(Exception ex)
                 {
@@ -64,15 +69,29 @@ namespace ToDoList.UI
             {
                 try
                 {
-                    //_taskService.UpdateTask(currentTasks);
-                    _taskService.AddTask(currentTask);
-                    _taskService.DeleteTaskById(currentTasks.Id);
+                    _taskService.UpdateTask(newTask);
                     panel1.Visible = false;
-                    MessageBox.Show($"The task \"{currentTask.Name}\" updated.");
-
-                    // TODO: Edited exception when we use method UpdateTask
+                    MessageBox.Show($"The task \"{newTask.Name}\" updated.");
                 }
-                catch(Exception ex)
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    MessageBox.Show($"Задача не была найдена в базе данных! " +
+                                    $"Внутренне исключение: {ex.InnerException.Message}");
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.InnerException.Message);
+                }
+                catch (ObjectDisposedException ex)
+                {
+                    MessageBox.Show($"Задача не существует в базе данных! " +
+                                    $"Внутренне исключение: {ex.InnerException.Message}");
+                }
+                catch (InvalidOperationException ex)
+                {
+                    MessageBox.Show(ex.InnerException.Message);
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }

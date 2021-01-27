@@ -79,20 +79,24 @@ namespace ToDoList.Domain.Services
                 if (!IsTaskPropertiesNull(task))
                 {
                     var config = new MapperConfiguration(cfg => cfg.CreateMap<TaskModel, TaskEntity>()
-                       .ForMember(t => t.Id, opt => opt.Ignore())
+                                    .ForMember(t => t.Id, opt => opt.Ignore()));
 
-                    );
                     var mapper = new Mapper(config);
 
                     var updateTask = mapper.Map<TaskModel, TaskEntity>(task);
+
+                    // Mapper create for updateTask a new Id, this should not be the case, 
+                    // for updateTask the previous Id from input TaskModel.
+                    updateTask.Id = task.Id;
+
                     _taskRepository.UpdateTask(updateTask);
                     return task;
                 }
 
-                throw new Exception("Cannot be update task with empty fields!");
+                throw new ArgumentException("Cannot be update task with empty fields!");
             }
 
-            throw new Exception("Cannot be update empty task!");
+            throw new ArgumentException("Cannot be update empty task!");
         }
 
         public void DeleteTaskById(string id)

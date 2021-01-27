@@ -81,7 +81,7 @@ namespace ToDoList.Test.Data.Repositories
         }
 
         [TestMethod]
-        public void CanUpdateValidTask_ReturnTask() // Do not work because method Update dont work.
+        public void CanUpdateValidTask_ReturnTask() 
         {
             // Arrange
             var taskEntity = new TaskEntity
