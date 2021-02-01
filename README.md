@@ -56,8 +56,8 @@ I use three-tiered architecture:
 ```
 
 ## Versions
-v1.0.0 - CRUD functional with user-friendly interface.
-v1.0.1 - Added table of contents
+- v1.0.0 - CRUD functional with user-friendly interface.
+- v1.0.1 - Added table of contents
 
 ## How to participate
 throw all your request in "pullRequests" branch
@@ -74,8 +74,12 @@ throw all your request in "pullRequests" branch
 ## Status
 I'm actively developing this project
 
-## Special thanks to:
-- You can be the first :)
+## Contributors:
+[![KurnakovMaksim](https://avatars.githubusercontent.com/u/59327306?v=3&s=100)](https://github.com/KurnakovMaksim) | [![Ulyanov-programmer](https://avatars.githubusercontent.com/u/66691708?s=3&v=100)](https://github.com/Ulyanov-programmer) |
+--- | --- |
+[KurnakovMaksim](https://github.com/KurnakovMaksim) | [Ulyanov-programmer](https://github.com/Ulyanov-programmer)
+
+[List Contributors](https://github.com/KurnakovMaksim/ToDoList/graphs/contributors)
 
 ## Connect with me
 If you want to improve something or fix a bug, you can send me an email maxmamamama@gmail.com
