@@ -40,9 +40,10 @@ namespace ToDoList.Data.Repositories
         public TaskEntity UpdateTask(TaskEntity task)
         {
             var returnedTask = FindTaskById(task.Id);
-            if (returnedTask is null)
+            if (IsTaskNull(returnedTask))
             {
-                throw new ArgumentOutOfRangeException("The input task have a incorrect Id!");
+                throw new System.Data.Entity.Core.
+                    ObjectNotFoundException("The task not found.");
             }
 
             _taskDbContext.Entry(returnedTask).CurrentValues.SetValues(task);

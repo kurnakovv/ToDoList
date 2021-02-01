@@ -73,23 +73,9 @@ namespace ToDoList.UI
                     panel1.Visible = false;
                     MessageBox.Show($"The task \"{newTask.Name}\" updated.");
                 }
-                catch (ArgumentOutOfRangeException ex)
+                catch (System.Data.Entity.Core.ObjectNotFoundException ex)
                 {
-                    MessageBox.Show($"Задача не была найдена в базе данных! " +
-                                    $"Внутренне исключение: {ex.InnerException.Message}");
-                }
-                catch (ArgumentException ex)
-                {
-                    MessageBox.Show(ex.InnerException.Message);
-                }
-                catch (ObjectDisposedException ex)
-                {
-                    MessageBox.Show($"Задача не существует в базе данных! " +
-                                    $"Внутренне исключение: {ex.InnerException.Message}");
-                }
-                catch (InvalidOperationException ex)
-                {
-                    MessageBox.Show(ex.InnerException.Message);
+                    MessageBox.Show($"{ex.Message}");
                 }
                 catch (Exception ex)
                 {

@@ -93,10 +93,10 @@ namespace ToDoList.Domain.Services
                     return task;
                 }
 
-                throw new ArgumentException("Cannot be update task with empty fields!");
+                throw new Exception("Cannot be update task with empty fields!");
             }
 
-            throw new ArgumentException("Cannot be update empty task!");
+            throw new Exception("Cannot be update empty task!");
         }
 
         public void DeleteTaskById(string id)
