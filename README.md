@@ -57,7 +57,8 @@ I use three-tiered architecture:
 
 ## Versions
 - v1.0.0 - CRUD functional with user-friendly interface.
-- v1.0.1 - Added table of contents
+- v1.0.1 - Added table of contents.
+- v1.0.2 - Edited task update system.
 
 ## How to participate
 throw all your request in "pullRequests" branch
