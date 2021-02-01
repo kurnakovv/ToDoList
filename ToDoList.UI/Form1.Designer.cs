@@ -44,6 +44,8 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.SearchBtn = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -51,7 +53,7 @@
             // AddBtn
             // 
             this.AddBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.AddBtn.Location = new System.Drawing.Point(13, 53);
+            this.AddBtn.Location = new System.Drawing.Point(14, 57);
             this.AddBtn.Name = "AddBtn";
             this.AddBtn.Size = new System.Drawing.Size(75, 23);
             this.AddBtn.TabIndex = 0;
@@ -187,12 +189,32 @@
             this.Column4.HeaderText = "Completness";
             this.Column4.Name = "Column4";
             // 
+            // SearchBtn
+            // 
+            this.SearchBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.SearchBtn.Location = new System.Drawing.Point(380, 56);
+            this.SearchBtn.Name = "SearchBtn";
+            this.SearchBtn.Size = new System.Drawing.Size(75, 22);
+            this.SearchBtn.TabIndex = 5;
+            this.SearchBtn.Text = "Search";
+            this.SearchBtn.UseVisualStyleBackColor = false;
+            this.SearchBtn.Click += new System.EventHandler(this.SearchBtn_Click);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(105, 57);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(276, 20);
+            this.textBox4.TabIndex = 6;
+            // 
             // ToDoList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.SearchBtn);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.AddBtn);
@@ -204,6 +226,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -224,6 +247,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column4;
+        private System.Windows.Forms.Button SearchBtn;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }
 

@@ -9,6 +9,7 @@ namespace ToDoList.Data.Repositories.Abstract
         TaskEntity AddTask(TaskEntity task);
         TaskEntity UpdateTask(TaskEntity task);
         TaskEntity GetTaskById(string id);
+        IEnumerable<TaskEntity> GetTasksByName(string name);
         void DeleteTaskById(string id);
     }
 }

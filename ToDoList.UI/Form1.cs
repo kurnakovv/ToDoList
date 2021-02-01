@@ -104,6 +104,32 @@ namespace ToDoList.UI
             LoadTasks();
         }
 
+        private void SearchBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(textBox4.Text))
+                {
+                    var tasks = _taskService.GetTasksByName(textBox4.Text);
+                    _bindingSourceTasks.DataSource = tasks;
+                }
+                else
+                {
+                    LoadTasks();
+                }
+            }
+            catch(System.Data.Entity.Core.ObjectNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            textBox4.Text = string.Empty;
+        }
+
         private void LoadTasks()
         {
             try

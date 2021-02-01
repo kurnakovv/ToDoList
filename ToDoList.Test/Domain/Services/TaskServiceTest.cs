@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ToDoList.Domain.Models;
 using ToDoList.Domain.Services;
@@ -184,6 +185,46 @@ namespace ToDoList.Test.Domain.Services
             // Assert
             Assert.AreEqual(taskModel, result1);
             Assert.AreEqual(taskModel, result2);
+        }
+
+        [TestMethod]
+        public void CanGetTasksByValidName()
+        {
+            // Arrange
+            TaskModel taskModel = new TaskModel()
+            {
+                Id = "Guid1",
+                Completeness = false,
+                DateTime = DateTime.Now,
+                Description = "Description",
+                Name = "Name",
+            };
+            ITaskService taskService = new TaskService();
+            taskService.AddTask(taskModel);
+
+            // Act
+            var result = taskService.GetTasksByName(taskModel.Name);
+            // Assert
+            Assert.AreEqual(taskModel.Name, result.FirstOrDefault(t => t.Name == taskModel.Name).Name);
+
+            taskService.DeleteTaskById(taskModel.Id);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(System.Data.Entity.Core.ObjectNotFoundException))]
+        public void CannotGetTasksIfCountEqualsNull_ReturnObjectNotFoundException()
+        {
+            // Arrange
+            TaskModel taskModel = new TaskModel()
+            {
+                Id = "Guid1",
+                Completeness = false,
+                DateTime = DateTime.Now,
+                Description = "Description",
+                Name = "Name",
+            };
+            ITaskService taskService = new TaskService();
+            taskService.GetTasksByName(taskModel.Name);
         }
     }
 }

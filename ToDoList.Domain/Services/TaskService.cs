@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ToDoList.Data.Entities;
 using ToDoList.Data.Repositories;
 using ToDoList.Data.Repositories.Abstract;
@@ -70,6 +71,26 @@ namespace ToDoList.Domain.Services
             }
 
             throw new Exception("Task id cannot be empty");
+        }
+
+        public IEnumerable<TaskModel> GetTasksByName(string name)
+        {
+            if(string.IsNullOrWhiteSpace(name))
+            {
+                throw new Exception("Task name cannot be empty");
+            }
+
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<TaskEntity, TaskModel>());
+            var mapper = new Mapper(config);
+
+            var getTasks = _taskRepository.GetTasksByName(name);
+
+            if (getTasks.Count() == 0)
+                throw new System.Data.Entity.Core.ObjectNotFoundException("Tasks not found");
+
+            IEnumerable<TaskModel> tasks = mapper.Map<IEnumerable<TaskModel>>(getTasks);
+
+            return tasks;
         }
 
         public TaskModel UpdateTask(TaskModel task)

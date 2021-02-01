@@ -37,6 +37,12 @@ namespace ToDoList.Data.Repositories
             return task;
         }
 
+        public IEnumerable<TaskEntity> GetTasksByName(string name)
+        {
+            IEnumerable<TaskEntity> tasks = FindTasksByName(name);
+            return tasks;
+        }
+
         public TaskEntity UpdateTask(TaskEntity task)
         {
             var returnedTask = FindTaskById(task.Id);
@@ -89,6 +95,11 @@ namespace ToDoList.Data.Repositories
         private TaskEntity FindTaskById(string id)
         {
             return _taskDbContext.Tasks.Find(id);
+        }
+
+        private IEnumerable<TaskEntity> FindTasksByName(string name)
+        {
+            return _taskDbContext.Tasks.Where(t => t.Name.Contains(name));
         }
 
         private void Save()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using ToDoList.Data.Context;
@@ -156,6 +157,30 @@ namespace ToDoList.Test.Data.Repositories
 
             // Assert
             Assert.IsNotNull(taskEntity);
+        }
+
+        [TestMethod]
+        public void CanGetTasksByName()
+        {
+            // Arrange
+            TaskEntity taskEntity = new TaskEntity
+            {
+                Id = "Guid1",
+                Completeness = false,
+                DateTime = DateTime.Now,
+                Description = "Description",
+                Name = "Name",
+            };
+            ITaskRepository taskRepository = new TaskRepository();
+            taskRepository.AddTask(taskEntity);
+
+            // Act
+            var result = taskRepository.GetTasksByName(taskEntity.Name);
+            
+            // Assert
+            Assert.AreEqual(taskEntity, result.FirstOrDefault(t => t.Name == taskEntity.Name));
+
+            taskRepository.DeleteTaskById(taskEntity.Id);
         }
     }
 }

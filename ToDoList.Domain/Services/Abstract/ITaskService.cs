@@ -9,6 +9,7 @@ namespace ToDoList.Domain.Services.Abstract
         TaskModel AddTask(TaskModel task);
         TaskModel UpdateTask(TaskModel task);
         TaskModel GetTaskById(string id);
+        IEnumerable<TaskModel> GetTasksByName(string name);
         void DeleteTaskById(string id);
     }
 }
