@@ -39,20 +39,16 @@ namespace ToDoList.Data.Repositories
 
         public TaskEntity UpdateTask(TaskEntity task)
         {
-            var returnedTask = _taskDbContext.Tasks
-                                             .SingleOrDefault(dbTask => dbTask.Id == task.Id);
+            var returnedTask = FindTaskById(task.Id);
             if (returnedTask is null)
             {
                 throw new ArgumentOutOfRangeException("The input task have a incorrect Id!");
             }
 
-            returnedTask.Name = task.Name;
-            returnedTask.Completeness = task.Completeness;
-            returnedTask.DateTime = task.DateTime;
-            returnedTask.Description = task.Description;
+            _taskDbContext.Entry(returnedTask).CurrentValues.SetValues(task);
 
             Save();
-            return task;
+            return returnedTask;
         }
 
         public void DeleteTaskById(string id)
