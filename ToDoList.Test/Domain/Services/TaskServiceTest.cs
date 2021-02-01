@@ -146,9 +146,11 @@ namespace ToDoList.Test.Domain.Services
                 Name = "Name",
             };
             ITaskService taskService = new TaskService();
+            taskService.AddTask(taskModel);
 
             // Act
             var result = taskService.UpdateTask(taskModel);
+            taskService.DeleteTaskById(taskModel.Id);
 
             // Assert
             Assert.IsNotNull(taskModel);

@@ -107,12 +107,14 @@ namespace ToDoList.Test.Data.Repositories
 
             // Act
             var result = taskRepository.UpdateTask(taskEntityUPDATE);
+            taskRepository.DeleteTaskById(taskEntityUPDATE.Id);
 
             // Assert
-            Assert.AreEqual(taskEntity.Name, result.Name);
-            Assert.AreEqual(taskEntity.Description, result.Description);
-            Assert.AreEqual(taskEntity.DateTime, result.DateTime);
-            Assert.AreEqual(taskEntity.Id, result.Id);
+            Assert.AreEqual(taskEntity, result);
+            Assert.AreEqual(taskEntityUPDATE.Name, result.Name);
+            Assert.AreEqual(taskEntityUPDATE.Description, result.Description);
+            Assert.AreEqual(taskEntityUPDATE.DateTime, result.DateTime);
+            Assert.AreEqual(taskEntityUPDATE.Id, result.Id);
         }
 
         [TestMethod]
