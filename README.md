@@ -82,4 +82,4 @@ I'm actively developing this project
 [List Contributors](https://github.com/KurnakovMaksim/ToDoList/graphs/contributors)
 
 ## Connect with me
-If you want to improve something or fix a bug, you can send me an email maxmamamama@gmail.com
+If you want to improve something or fix a bug, you can send me an email maxmamamama2003@gmail.com
