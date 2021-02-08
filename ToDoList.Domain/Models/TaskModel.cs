@@ -9,6 +9,7 @@ namespace ToDoList.Domain.Models
         public string Description { get; set; }
         public bool Completeness { get; set; }
         public DateTime DateTime { get; set; }
+        public TaskCategoryModel Category { get; set; }
 
         public TaskModel()
         {
