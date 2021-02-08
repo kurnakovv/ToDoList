@@ -46,8 +46,12 @@
             this.Column4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.SearchBtn = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.CategoryMenu = new System.Windows.Forms.MenuStrip();
+            this.taskCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CategoryManagerBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.CategoryMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // AddBtn
@@ -163,7 +167,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(13, 82);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(443, 353);
+            this.dataGridView1.Size = new System.Drawing.Size(443, 356);
             this.dataGridView1.TabIndex = 4;
             // 
             // Column1
@@ -207,17 +211,48 @@
             this.textBox4.Size = new System.Drawing.Size(276, 20);
             this.textBox4.TabIndex = 6;
             // 
+            // CategoryMenu
+            // 
+            this.CategoryMenu.BackColor = System.Drawing.Color.Silver;
+            this.CategoryMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.taskCategoryToolStripMenuItem});
+            this.CategoryMenu.Location = new System.Drawing.Point(0, 0);
+            this.CategoryMenu.Name = "CategoryMenu";
+            this.CategoryMenu.Size = new System.Drawing.Size(800, 24);
+            this.CategoryMenu.TabIndex = 7;
+            this.CategoryMenu.Text = "menuStrip1";
+            // 
+            // taskCategoryToolStripMenuItem
+            // 
+            this.taskCategoryToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
+            this.taskCategoryToolStripMenuItem.Name = "taskCategoryToolStripMenuItem";
+            this.taskCategoryToolStripMenuItem.Size = new System.Drawing.Size(91, 20);
+            this.taskCategoryToolStripMenuItem.Text = "Task category";
+            // 
+            // CategoryManagerBtn
+            // 
+            this.CategoryManagerBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.CategoryManagerBtn.Location = new System.Drawing.Point(696, 23);
+            this.CategoryManagerBtn.Name = "CategoryManagerBtn";
+            this.CategoryManagerBtn.Size = new System.Drawing.Size(104, 23);
+            this.CategoryManagerBtn.TabIndex = 8;
+            this.CategoryManagerBtn.Text = "Category manager";
+            this.CategoryManagerBtn.UseVisualStyleBackColor = false;
+            this.CategoryManagerBtn.Click += new System.EventHandler(this.CategoryManagerBtn_Click);
+            // 
             // ToDoList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.CategoryManagerBtn);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.SearchBtn);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.AddBtn);
+            this.Controls.Add(this.CategoryMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ToDoList";
             this.Text = "ToDoList";
@@ -225,6 +260,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.CategoryMenu.ResumeLayout(false);
+            this.CategoryMenu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,6 +286,9 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column4;
         private System.Windows.Forms.Button SearchBtn;
         private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.MenuStrip CategoryMenu;
+        private System.Windows.Forms.ToolStripMenuItem taskCategoryToolStripMenuItem;
+        private System.Windows.Forms.Button CategoryManagerBtn;
     }
 }
 

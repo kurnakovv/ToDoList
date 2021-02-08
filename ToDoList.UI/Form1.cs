@@ -12,6 +12,7 @@ namespace ToDoList.UI
         private readonly BindingSource _bindingSourceTasks = new BindingSource();
         private readonly BindingSource _bindingSourceCurrentTask = new BindingSource();
         private readonly ITaskService _taskService = new TaskService();
+        private readonly ITaskCategoryService _taskCategoryService = new TaskCategoryService();
 
         public ToDoList()
         {
@@ -20,6 +21,7 @@ namespace ToDoList.UI
             SetBindings();
             Load += Form1_Load;
             LoadTasks();
+            LoadCategories();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -29,6 +31,21 @@ namespace ToDoList.UI
 
             if (dataGridView1.CurrentCell != null)
                 panel1.Visible = true;
+        }
+
+        private void LoadCategories()
+        {
+            var categories = _taskCategoryService.GetCategories();
+            int id = 0;
+
+            foreach (TaskCategoryModel items in categories)
+            {
+                ToolStripMenuItem item = new ToolStripMenuItem(items.Title);
+                item.Tag = id;
+                id++;
+
+                taskCategoryToolStripMenuItem.DropDownItems.Add(item);
+            }
         }
 
         private void AddBtn_Click(object sender, EventArgs e)
@@ -190,6 +207,12 @@ namespace ToDoList.UI
             textBox1.DataBindings.Add("Text", _bindingSourceCurrentTask, nameof(TaskModel.Name));
             textBox2.DataBindings.Add("Text", _bindingSourceCurrentTask, nameof(TaskModel.DateTime));
             textBox3.DataBindings.Add("Text", _bindingSourceCurrentTask, nameof(TaskModel.Description));
+        }
+
+        private void CategoryManagerBtn_Click(object sender, EventArgs e)
+        {
+            var form = new CategoryManagerForm(this);
+            form.ShowDialog();
         }
     }
 }
