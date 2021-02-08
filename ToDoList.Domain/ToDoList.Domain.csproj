@@ -54,9 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\TaskCategoryModel.cs" />
     <Compile Include="Models\TaskModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Abstract\ITaskCategoryService.cs" />
     <Compile Include="Services\Abstract\ITaskService.cs" />
+    <Compile Include="Services\TaskCategoryService.cs" />
     <Compile Include="Services\TaskService.cs" />
   </ItemGroup>
   <ItemGroup>

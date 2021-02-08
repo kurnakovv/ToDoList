@@ -70,7 +70,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Repositories\TaskCategoryRepositoryTest.cs" />
     <Compile Include="Data\Repositories\TaskRepositoryTest.cs" />
+    <Compile Include="Domain\Services\TaskCategoryServiceTest.cs" />
     <Compile Include="Domain\Services\TaskServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
