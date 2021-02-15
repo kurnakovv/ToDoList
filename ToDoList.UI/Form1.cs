@@ -36,15 +36,19 @@ namespace ToDoList.UI
         private void LoadCategories()
         {
             var categories = _taskCategoryService.GetCategories();
+            comboBox1.DataSource = categories;
+            comboBox1.DisplayMember = "Title";
+            comboBox1.ValueMember = "Id";
+
             int id = 0;
 
-            foreach (TaskCategoryModel items in categories)
+            foreach (TaskCategoryModel item in categories)
             {
-                ToolStripMenuItem item = new ToolStripMenuItem(items.Title);
-                item.Tag = id;
+                ToolStripMenuItem itemToolStrip = new ToolStripMenuItem(item.Title);
+                itemToolStrip.Tag = id;
                 id++;
 
-                taskCategoryToolStripMenuItem.DropDownItems.Add(item);
+                taskCategoryToolStripMenuItem.DropDownItems.Add(itemToolStrip);
             }
         }
 
@@ -68,6 +72,8 @@ namespace ToDoList.UI
             // for new task the previous Id from oldTask.
             newTask.Id = oldTask.Id;
 
+            // Give id the current item in combobox.
+            newTask.CategoryId = comboBox1.SelectedValue.ToString();
 
             if (dataGridView1.CurrentCell.Value == null)
             {
@@ -77,7 +83,7 @@ namespace ToDoList.UI
                     panel1.Visible = false;
                     MessageBox.Show($"The task \"{newTask.Name}\" added.");
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
@@ -201,12 +207,16 @@ namespace ToDoList.UI
             Column1.DataPropertyName = nameof(TaskModel.Name);
             Column2.DataPropertyName = nameof(TaskModel.Description);
             Column3.DataPropertyName = nameof(TaskModel.DateTime);
+            Column4.DataPropertyName = nameof(TaskModel.Completeness);
+            Column5.DataPropertyName = nameof(TaskModel.CategoryId);
+            Column5.Visible = false;
 
             _bindingSourceCurrentTask.DataSource = new List<TaskModel> { new TaskModel() };
 
             textBox1.DataBindings.Add("Text", _bindingSourceCurrentTask, nameof(TaskModel.Name));
             textBox2.DataBindings.Add("Text", _bindingSourceCurrentTask, nameof(TaskModel.DateTime));
             textBox3.DataBindings.Add("Text", _bindingSourceCurrentTask, nameof(TaskModel.Description));
+            comboBox1.DataBindings.Add("Text", _bindingSourceCurrentTask, nameof(TaskModel.CategoryId));
         }
 
         private void CategoryManagerBtn_Click(object sender, EventArgs e)
