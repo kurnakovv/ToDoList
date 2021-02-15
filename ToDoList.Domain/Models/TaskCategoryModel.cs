@@ -8,13 +8,13 @@ namespace ToDoList.Domain.Models
         public string Id { get; set; }
         public DateTime DateTime { get; set; }
         public string Title { get; set; }
-        public ICollection<TaskModel> TasksCategory { get; set; }
+        public ICollection<TaskModel> Tasks { get; set; }
 
         public TaskCategoryModel()
         {
             Id = Guid.NewGuid().ToString();
             DateTime = DateTime.Now;
-            TasksCategory = new List<TaskModel>();
+            Tasks = new List<TaskModel>();
         }
 
         public static TaskCategoryModel GetCloneCategory(TaskCategoryModel category)
@@ -28,7 +28,7 @@ namespace ToDoList.Domain.Models
             {
                 Title = category.Title,
                 DateTime = category.DateTime,
-                TasksCategory = category.TasksCategory,
+                Tasks = category.Tasks,
                 Id = category.Id,
             };
         }
