@@ -17,16 +17,16 @@
                     })
                 .PrimaryKey(t => t.Id);
             
-            AddColumn("dbo.TaskEntities", "Category_Id", c => c.String(maxLength: 128));
-            CreateIndex("dbo.TaskEntities", "Category_Id");
-            AddForeignKey("dbo.TaskEntities", "Category_Id", "dbo.TaskCategoryEntities", "Id");
+            AddColumn("dbo.TaskEntities", "CategoryId", c => c.String(maxLength: 128));
+            CreateIndex("dbo.TaskEntities", "CategoryId");
+            AddForeignKey("dbo.TaskEntities", "CategoryId", "dbo.TaskCategoryEntities", "Id");
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.TaskEntities", "Category_Id", "dbo.TaskCategoryEntities");
-            DropIndex("dbo.TaskEntities", new[] { "Category_Id" });
-            DropColumn("dbo.TaskEntities", "Category_Id");
+            DropForeignKey("dbo.TaskEntities", "CategoryId", "dbo.TaskCategoryEntities");
+            DropIndex("dbo.TaskEntities", new[] { "CategoryId" });
+            DropColumn("dbo.TaskEntities", "CategoryId");
             DropTable("dbo.TaskCategoryEntities");
         }
     }
