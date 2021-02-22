@@ -76,7 +76,7 @@ throw all your request in "pullRequests" branch
 I'm actively developing this project
 
 ## Contributors:
-[![KurnakovMaksim](https://avatars.githubusercontent.com/u/59327306?v=3&s=100)](https://github.com/KurnakovMaksim) | [![Ulyanov-programmer](https://avatars.githubusercontent.com/u/66691708?s=3&v=100)](https://github.com/Ulyanov-programmer) |
+[![KurnakovMaksim](https://avatars.githubusercontent.com/u/59327306?v=3&s=100)](https://github.com/KurnakovMaksim) | <img src="https://avatars.githubusercontent.com/u/66691708" width="100" height="100"/> |
 --- | --- |
 [KurnakovMaksim](https://github.com/KurnakovMaksim) | [Ulyanov-programmer](https://github.com/Ulyanov-programmer)
 
