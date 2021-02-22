@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using ToDoList.Domain.Models;
 using ToDoList.Domain.Services;
 using ToDoList.Domain.Services.Abstract;
+using ToDoList.Mapping.Automapper;
 
 namespace ToDoList.UI
 {
@@ -11,7 +12,7 @@ namespace ToDoList.UI
     {
         private readonly BindingSource _bindingSourceCategories = new BindingSource();
         private readonly BindingSource _bindingSourceCurrentCategory = new BindingSource();
-        private readonly ITaskCategoryService _taskCategoryService = new TaskCategoryService();
+        private readonly ITaskCategoryService _taskCategoryService = new TaskCategoryService(AutomapperConfig.MapConfig());
         private readonly ToDoList _form = new ToDoList();
 
         public CategoryManagerForm(ToDoList form)

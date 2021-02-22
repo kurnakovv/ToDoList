@@ -13,19 +13,18 @@ namespace ToDoList.Domain.Services
     public class TaskService : ITaskService
     {
         private readonly ITaskRepository _taskRepository = new TaskRepository();
+        private readonly IMapper _mapper;
 
-        //public TaskService(ITaskRepository taskRepository)
-        //{
-        //    _taskRepository = taskRepository;
-        //}
+        public TaskService(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
 
         public IEnumerable<TaskModel> GetAllTasks()
         {
-            var config = new MapperConfiguration(cfg =>
-                    cfg.CreateMap<TaskEntity, TaskModel>());
-            var mapper = new Mapper(config);
+            var tasksEntities = _taskRepository.GetAllTasks();
 
-            var tasks = mapper.Map<IEnumerable<TaskModel>>(_taskRepository.GetAllTasks());
+            var tasks = _mapper.Map<IEnumerable<TaskModel>>(tasksEntities);
 
             if (tasks is null)
                 throw new Exception();
@@ -39,11 +38,8 @@ namespace ToDoList.Domain.Services
             {
                 if (!IsTaskPropertiesNull(task))
                 {
-                    var config = new MapperConfiguration(cfg => cfg.CreateMap<TaskModel, TaskEntity>());
-                    var mapper = new Mapper(config);
-
-                    var addTask = mapper.Map<TaskEntity>(task);
-                    _taskRepository.AddTask(addTask);
+                    var taskEntity = _mapper.Map<TaskEntity>(task);
+                    _taskRepository.AddTask(taskEntity);
                     return task;
                 }
 
@@ -57,17 +53,13 @@ namespace ToDoList.Domain.Services
         {
             if (!string.IsNullOrEmpty(id))
             {
-                var config = new MapperConfiguration(cfg => cfg.CreateMap<TaskEntity, TaskModel>());
-                var mapper = new Mapper(config);
+                var taskEntity = _taskRepository.GetTaskById(id);
+                var taskModel = _mapper.Map<TaskModel>(taskEntity);
 
-                var getTask = _taskRepository.GetTaskById(id);
-
-                if (getTask is null)
+                if (taskModel is null)
                     throw new System.Data.Entity.Core.ObjectNotFoundException("Task not found");
 
-                TaskModel task = mapper.Map<TaskModel>(getTask);
-
-                return task;
+                return taskModel;
             }
 
             throw new Exception("Task id cannot be empty");
@@ -80,17 +72,13 @@ namespace ToDoList.Domain.Services
                 throw new Exception("Task name cannot be empty");
             }
 
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<TaskEntity, TaskModel>());
-            var mapper = new Mapper(config);
+            var tasksEntity = _taskRepository.GetTasksByName(name);
+            var tasksModel = _mapper.Map<IEnumerable<TaskModel>>(tasksEntity);
 
-            var getTasks = _taskRepository.GetTasksByName(name);
-
-            if (getTasks.Count() == 0)
+            if (tasksModel.Count() == 0)
                 throw new System.Data.Entity.Core.ObjectNotFoundException("Tasks not found");
 
-            IEnumerable<TaskModel> tasks = mapper.Map<IEnumerable<TaskModel>>(getTasks);
-
-            return tasks;
+            return tasksModel;
         }
 
         public TaskModel UpdateTask(TaskModel task)
@@ -99,16 +87,7 @@ namespace ToDoList.Domain.Services
             {
                 if (!IsTaskPropertiesNull(task))
                 {
-                    var config = new MapperConfiguration(cfg => cfg.CreateMap<TaskModel, TaskEntity>()
-                                    .ForMember(t => t.Id, opt => opt.Ignore()));
-
-                    var mapper = new Mapper(config);
-
-                    var updateTask = mapper.Map<TaskModel, TaskEntity>(task);
-
-                    // Mapper create for updateTask a new Id, this should not be the case, 
-                    // for updateTask the previous Id from input TaskModel.
-                    updateTask.Id = task.Id;
+                    var updateTask = _mapper.Map<TaskEntity>(task);
 
                     _taskRepository.UpdateTask(updateTask);
                     return task;

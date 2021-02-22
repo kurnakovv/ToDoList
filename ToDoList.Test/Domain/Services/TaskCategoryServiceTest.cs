@@ -4,6 +4,7 @@ using System.Data.Entity.Core;
 using ToDoList.Domain.Models;
 using ToDoList.Domain.Services;
 using ToDoList.Domain.Services.Abstract;
+using ToDoList.Mapping.Automapper;
 
 namespace ToDoList.Test.Domain.Services
 {
@@ -21,7 +22,7 @@ namespace ToDoList.Test.Domain.Services
                 Title = "Daily",
             };
 
-            ITaskCategoryService repository = new TaskCategoryService();
+            ITaskCategoryService repository = new TaskCategoryService(AutomapperConfig.MapConfig());
 
             // Act
             var result = repository.AddCategory(category);
@@ -43,7 +44,7 @@ namespace ToDoList.Test.Domain.Services
                 Title = null,
             };
 
-            ITaskCategoryService repository = new TaskCategoryService();
+            ITaskCategoryService repository = new TaskCategoryService(AutomapperConfig.MapConfig());
 
             // Act
             repository.AddCategory(category);
@@ -67,7 +68,7 @@ namespace ToDoList.Test.Domain.Services
                 Title = "Title",
             };
 
-            ITaskCategoryService repository = new TaskCategoryService();
+            ITaskCategoryService repository = new TaskCategoryService(AutomapperConfig.MapConfig());
 
             // Act
             repository.AddCategory(category);
@@ -91,7 +92,7 @@ namespace ToDoList.Test.Domain.Services
                 Title = "     ",
             };
 
-            ITaskCategoryService repository = new TaskCategoryService();
+            ITaskCategoryService repository = new TaskCategoryService(AutomapperConfig.MapConfig());
 
             // Act
             repository.UpdateCategory(category);
@@ -104,7 +105,7 @@ namespace ToDoList.Test.Domain.Services
             // Arrange
             string id = null;
 
-            ITaskCategoryService repository = new TaskCategoryService();
+            ITaskCategoryService repository = new TaskCategoryService(AutomapperConfig.MapConfig());
 
             // Act
             repository.DeleteCategoryById(id);

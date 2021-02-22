@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using ToDoList.Domain.Models;
 using ToDoList.Domain.Services;
 using ToDoList.Domain.Services.Abstract;
+using ToDoList.Mapping.Automapper;
 
 namespace ToDoList.UI
 {
@@ -11,8 +12,8 @@ namespace ToDoList.UI
     {
         private readonly BindingSource _bindingSourceTasks = new BindingSource();
         private readonly BindingSource _bindingSourceCurrentTask = new BindingSource();
-        private readonly ITaskService _taskService = new TaskService();
-        private readonly ITaskCategoryService _taskCategoryService = new TaskCategoryService();
+        private readonly ITaskService _taskService = new TaskService(AutomapperConfig.MapConfig());
+        private readonly ITaskCategoryService _taskCategoryService = new TaskCategoryService(AutomapperConfig.MapConfig());
 
         public ToDoList()
         {

@@ -13,6 +13,12 @@ namespace ToDoList.Domain.Services
     {
         private readonly ITaskCategoryRepository _taskCategoryRepository =
             new TaskCategoryRepository();
+        private readonly IMapper _mapper;
+
+        public TaskCategoryService(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
 
         public TaskCategoryModel AddCategory(TaskCategoryModel category)
         {
@@ -22,10 +28,7 @@ namespace ToDoList.Domain.Services
             if (IsCategoryPropertiesNull(category))
                 throw new Exception("Cannot be add category with empty properties.");
 
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<TaskCategoryModel, TaskCategoryEntity>());
-            var mapper = new Mapper(config);
-            var categoryEntity = mapper.Map<TaskCategoryEntity>(category);
-
+            var categoryEntity = _mapper.Map<TaskCategoryEntity>(category);
             _taskCategoryRepository.AddCategory(categoryEntity);
 
             return category;
@@ -41,9 +44,7 @@ namespace ToDoList.Domain.Services
 
         public IEnumerable<TaskCategoryModel> GetCategories()
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<TaskCategoryEntity, TaskCategoryModel>());
-            var mapper = new Mapper(config);
-            var categories = mapper.Map<IEnumerable<TaskCategoryModel>>(_taskCategoryRepository.GetCategories());
+            var categories = _mapper.Map<IEnumerable<TaskCategoryModel>>(_taskCategoryRepository.GetCategories());
 
             if (categories is null)
                 throw new Exception("Database not connected.");
@@ -59,10 +60,7 @@ namespace ToDoList.Domain.Services
             if (IsCategoryPropertiesNull(category))
                 throw new Exception("Cannot be update category with empty properties.");
 
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<TaskCategoryModel, TaskCategoryEntity>());
-            var mapper = new Mapper(config);
-            var updateCategory = mapper.Map<TaskCategoryModel, TaskCategoryEntity>(category);
-            updateCategory.Id = category.Id;
+            var updateCategory = _mapper.Map<TaskCategoryEntity>(category);
 
             _taskCategoryRepository.UpdateCategory(updateCategory);
             return category;

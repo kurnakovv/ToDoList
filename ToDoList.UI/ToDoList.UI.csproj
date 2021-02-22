@@ -110,6 +110,10 @@
       <Project>{ce865911-0a15-4dd5-b335-5a75abbaa8ff}</Project>
       <Name>ToDoList.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ToDoList.Mapping\ToDoList.Mapping.csproj">
+      <Project>{1e7cdd36-192f-4913-ac06-0baf8682cdd5}</Project>
+      <Name>ToDoList.Mapping</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ToDoList_ICO.ico" />

@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ToDoList.Domain.Models;
 using ToDoList.Domain.Services;
 using ToDoList.Domain.Services.Abstract;
+using ToDoList.Mapping.Automapper;
 
 namespace ToDoList.Test.Domain.Services
 {
@@ -22,7 +23,7 @@ namespace ToDoList.Test.Domain.Services
                 Description = "Description",
                 Name = "Name",
             };
-            ITaskService taskService = new TaskService();
+            ITaskService taskService = new TaskService(AutomapperConfig.MapConfig());
 
             // Act
             var result = taskService.AddTask(taskModel);
@@ -50,7 +51,7 @@ namespace ToDoList.Test.Domain.Services
             };
 
             TaskModel taskModel2 = null;
-            ITaskService taskService = new TaskService();
+            ITaskService taskService = new TaskService(AutomapperConfig.MapConfig());
 
             // Act
             var result1 = taskService.AddTask(taskModel);
@@ -73,7 +74,7 @@ namespace ToDoList.Test.Domain.Services
                 Description = "Description",
                 Name = "Name",
             };
-            ITaskService taskService = new TaskService();
+            ITaskService taskService = new TaskService(AutomapperConfig.MapConfig());
 
             // Act
             taskService.AddTask(taskModel);
@@ -103,7 +104,7 @@ namespace ToDoList.Test.Domain.Services
                 Description = "Description",
                 Name = "Name",
             };
-            ITaskService taskService = new TaskService();
+            ITaskService taskService = new TaskService(AutomapperConfig.MapConfig());
 
             // Act
             var result = taskService.GetTaskById(taskModel.Id);
@@ -125,7 +126,7 @@ namespace ToDoList.Test.Domain.Services
                 Description = "Description",
                 Name = "Name",
             };
-            ITaskService taskService = new TaskService();
+            ITaskService taskService = new TaskService(AutomapperConfig.MapConfig());
 
             // Act
             var result = taskService.GetTaskById(taskModel.Id);
@@ -146,7 +147,7 @@ namespace ToDoList.Test.Domain.Services
                 Description = "Description",
                 Name = "Name",
             };
-            ITaskService taskService = new TaskService();
+            ITaskService taskService = new TaskService(AutomapperConfig.MapConfig());
             taskService.AddTask(taskModel);
 
             // Act
@@ -176,7 +177,7 @@ namespace ToDoList.Test.Domain.Services
 
             TaskModel taskModel2 = null;
 
-            ITaskService taskService = new TaskService();
+            ITaskService taskService = new TaskService(AutomapperConfig.MapConfig());
 
             // Act
             var result1 = taskService.UpdateTask(taskModel);
@@ -199,7 +200,7 @@ namespace ToDoList.Test.Domain.Services
                 Description = "Description",
                 Name = "Name",
             };
-            ITaskService taskService = new TaskService();
+            ITaskService taskService = new TaskService(AutomapperConfig.MapConfig());
             taskService.AddTask(taskModel);
 
             // Act
@@ -223,7 +224,7 @@ namespace ToDoList.Test.Domain.Services
                 Description = "Description",
                 Name = "Name",
             };
-            ITaskService taskService = new TaskService();
+            ITaskService taskService = new TaskService(AutomapperConfig.MapConfig());
             taskService.GetTasksByName(taskModel.Name);
         }
     }
