@@ -29,6 +29,8 @@ namespace ToDoList.UI
         {
             dataGridView1.MouseClick += (s, a) => SetCurrentTask();
             dataGridView1.MouseClick += (s, a) => EnableEditPanel();
+            taskCategoryToolStripMenuItem.DropDownItemClicked += (s, a) => SortByCategory(a.ClickedItem.Text);
+            taskCategoryToolStripMenuItem.Click += (s, a) => LoadTasks();
 
             if (dataGridView1.CurrentCell != null)
                 panel1.Visible = true;
@@ -51,6 +53,12 @@ namespace ToDoList.UI
 
                 taskCategoryToolStripMenuItem.DropDownItems.Add(itemToolStrip);
             }
+        }
+
+        private void SortByCategory(string currentItemInMenu)
+        {
+
+            _bindingSourceTasks.DataSource = _taskService.SortTasksByCategory(currentItemInMenu);
         }
 
         private void AddBtn_Click(object sender, EventArgs e)

@@ -11,5 +11,6 @@ namespace ToDoList.Data.Repositories.Abstract
         TaskEntity GetTaskById(string id);
         IEnumerable<TaskEntity> GetTasksByName(string name);
         void DeleteTaskById(string id);
+        IEnumerable<TaskEntity> SortTasksByCategory(string categoryName);
     }
 }

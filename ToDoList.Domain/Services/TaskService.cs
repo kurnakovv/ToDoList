@@ -81,6 +81,14 @@ namespace ToDoList.Domain.Services
             return tasksModel;
         }
 
+        public IEnumerable<TaskModel> SortTasksByCategory(string categoryName)
+        {
+            var tasksEntity = _taskRepository.SortTasksByCategory(categoryName);
+            var tasksModel = _mapper.Map<IEnumerable<TaskModel>>(tasksEntity);
+
+            return tasksModel;
+        }
+
         public TaskModel UpdateTask(TaskModel task)
         {
             if (!IsTaskNull(task))

@@ -11,5 +11,6 @@ namespace ToDoList.Domain.Services.Abstract
         TaskModel GetTaskById(string id);
         IEnumerable<TaskModel> GetTasksByName(string name);
         void DeleteTaskById(string id);
+        IEnumerable<TaskModel> SortTasksByCategory(string categoryName);
     }
 }

@@ -58,6 +58,14 @@ namespace ToDoList.Data.Repositories
             return returnedTask;
         }
 
+        public IEnumerable<TaskEntity> SortTasksByCategory(string categoryName)
+        {
+            IEnumerable<TaskEntity> tasks = _taskDbContext.Tasks.Where(t => 
+                                                t.Category.Title.Contains(categoryName));
+
+            return tasks;
+        }
+
         public void DeleteTaskById(string id)
         {
             var removeTask = FindTaskById(id);
