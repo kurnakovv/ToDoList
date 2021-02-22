@@ -84,6 +84,12 @@ namespace ToDoList.Domain.Services
         public IEnumerable<TaskModel> SortTasksByCategory(string categoryName)
         {
             var tasksEntity = _taskRepository.SortTasksByCategory(categoryName);
+
+            if(tasksEntity.Count() == 0)
+            {
+                throw new System.Data.Entity.Core.ObjectNotFoundException($"The category \"{categoryName}\" is empty");
+            }
+
             var tasksModel = _mapper.Map<IEnumerable<TaskModel>>(tasksEntity);
 
             return tasksModel;

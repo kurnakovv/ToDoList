@@ -57,8 +57,14 @@ namespace ToDoList.UI
 
         private void SortByCategory(string currentItemInMenu)
         {
-
-            _bindingSourceTasks.DataSource = _taskService.SortTasksByCategory(currentItemInMenu);
+            try
+            {
+                _bindingSourceTasks.DataSource = _taskService.SortTasksByCategory(currentItemInMenu);
+            }
+            catch(System.Data.Entity.Core.ObjectNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void AddBtn_Click(object sender, EventArgs e)

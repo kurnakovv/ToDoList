@@ -227,5 +227,69 @@ namespace ToDoList.Test.Domain.Services
             ITaskService taskService = new TaskService(AutomapperConfig.MapConfig());
             taskService.GetTasksByName(taskModel.Name);
         }
+
+        [TestMethod]
+        public void SortTasksByCategory_CanSortByCategoryTitle_ReturnTasks()
+        {
+            // Arrange
+            var category = new TaskCategoryModel()
+            {
+                Id = Guid.NewGuid().ToString(),
+                DateTime = DateTime.Now,
+                Title = "Daily",
+            };
+
+            var task = new TaskModel
+            {
+                Id = Guid.NewGuid().ToString(),
+                Completeness = false,
+                DateTime = DateTime.Now,
+                Description = "Description",
+                Name = "Name",
+                Category = category,
+            };
+
+            ITaskService taskService = new TaskService(AutomapperConfig.MapConfig());
+            taskService.AddTask(task);
+
+
+            // Act
+            var result = taskService.SortTasksByCategory(task.Category.Title);
+
+            // Assert
+            Assert.IsNotNull(result);
+
+            Assert.AreEqual(task.Name, result.FirstOrDefault().Name);
+
+            taskService.DeleteTaskById(task.Id);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(System.Data.Entity.Core.ObjectNotFoundException))]
+        public void SortTasksByCategory_CannotSortByCategoryIfCountEqualsNull_ReturnObjectNotFoundException()
+        {
+            // Arrange
+            var category = new TaskCategoryModel()
+            {
+                Id = Guid.NewGuid().ToString(),
+                DateTime = DateTime.Now,
+                Title = "Daily",
+            };
+
+            var task = new TaskModel
+            {
+                Id = Guid.NewGuid().ToString(),
+                Completeness = false,
+                DateTime = DateTime.Now,
+                Description = "Description",
+                Name = "Name",
+                Category = category,
+            };
+
+            ITaskService taskService = new TaskService(AutomapperConfig.MapConfig());
+
+            // Act
+            taskService.SortTasksByCategory(task.Category.Title);
+        }
     }
 }

@@ -182,5 +182,43 @@ namespace ToDoList.Test.Data.Repositories
 
             taskRepository.DeleteTaskById(taskEntity.Id);
         }
+
+        [TestMethod]
+        public void SortTasksByCategory_CanSortByCategoryTitle_ReturnTasks()
+        {
+            // Arrange
+            var category = new TaskCategoryEntity()
+            {
+                Id = "Guid 1",
+                DateTime = DateTime.Now,
+                Title = "Daily",
+            };
+
+            var taskEntity = new TaskEntity
+            {
+                Id = "Guid1",
+                Completeness = false,
+                DateTime = DateTime.Now,
+                Description = "Description",
+                Name = "Name",
+                Category = category,
+            };
+            
+            ITaskRepository taskRepository = new TaskRepository();
+            ITaskCategoryRepository taskCategoryRepository = new TaskCategoryRepository();
+            taskRepository.AddTask(taskEntity);
+            
+
+            // Act
+            var result = taskRepository.SortTasksByCategory(taskEntity.Category.Title);
+
+            // Assert
+            Assert.IsNotNull(result);
+
+            Assert.AreEqual(taskEntity, result.FirstOrDefault(t => t.Name == taskEntity.Name));
+
+            taskRepository.DeleteTaskById(taskEntity.Id);
+            taskCategoryRepository.DeleteCategoryById(category.Id);
+        }
     }
 }
