@@ -248,5 +248,11 @@ namespace ToDoList.UI
             var form = new CategoryManagerForm(this);
             form.ShowDialog();
         }
+
+        private void ReloadCategories_Btn_Click(object sender, EventArgs e)
+        {
+            taskCategoryToolStripMenuItem.DropDownItems.Clear();
+            LoadCategories();
+        }
     }
 }

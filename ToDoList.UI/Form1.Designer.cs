@@ -52,6 +52,7 @@
             this.CategoryMenu = new System.Windows.Forms.MenuStrip();
             this.taskCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CategoryManagerBtn = new System.Windows.Forms.Button();
+            this.ReloadCategories_Btn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.CategoryMenu.SuspendLayout();
@@ -270,12 +271,24 @@
             this.CategoryManagerBtn.UseVisualStyleBackColor = false;
             this.CategoryManagerBtn.Click += new System.EventHandler(this.CategoryManagerBtn_Click);
             // 
+            // ReloadCategories_Btn
+            // 
+            this.ReloadCategories_Btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.ReloadCategories_Btn.Location = new System.Drawing.Point(105, 0);
+            this.ReloadCategories_Btn.Name = "ReloadCategories_Btn";
+            this.ReloadCategories_Btn.Size = new System.Drawing.Size(104, 23);
+            this.ReloadCategories_Btn.TabIndex = 9;
+            this.ReloadCategories_Btn.Text = "Reload categories";
+            this.ReloadCategories_Btn.UseVisualStyleBackColor = false;
+            this.ReloadCategories_Btn.Click += new System.EventHandler(this.ReloadCategories_Btn_Click);
+            // 
             // ToDoList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ReloadCategories_Btn);
             this.Controls.Add(this.CategoryManagerBtn);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.SearchBtn);
@@ -322,6 +335,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column4;
+        private System.Windows.Forms.Button ReloadCategories_Btn;
     }
 }
 
