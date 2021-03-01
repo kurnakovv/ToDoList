@@ -201,7 +201,13 @@ namespace ToDoList.UI
         {
             if (_bindingSourceTasks.Count > 0)
             {
-                _bindingSourceCurrentTask.List[0] = TaskModel.GetCloneTask((TaskModel)_bindingSourceTasks.Current);
+                TaskModel currentSelectedTask = TaskModel.GetCloneTask((TaskModel)_bindingSourceTasks.Current);
+                _bindingSourceCurrentTask.List[0] = currentSelectedTask;
+
+                if (currentSelectedTask.Category != null)
+                {
+                    comboBox1.Text = currentSelectedTask.Category.Title;
+                }
             }
             else
             {

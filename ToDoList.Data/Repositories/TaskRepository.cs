@@ -19,7 +19,7 @@ namespace ToDoList.Data.Repositories
 
         public IEnumerable<TaskEntity> GetAllTasks()
         {
-            IEnumerable<TaskEntity> tasksList = _taskDbContext.Tasks.ToList();
+            IEnumerable<TaskEntity> tasksList = _taskDbContext.Tasks.Include(t => t.Category).ToList();
             return tasksList;
         }
 
