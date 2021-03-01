@@ -20,7 +20,6 @@ namespace ToDoList.UI
             InitializeComponent();
 
             SetBindings();
-            Load += Form1_Load;
             LoadTasks();
             LoadCategories();
         }
