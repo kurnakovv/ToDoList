@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ToDoList.Data.Entities;
 using ToDoList.Data.Repositories;
 using ToDoList.Data.Repositories.Abstract;
@@ -27,6 +28,14 @@ namespace ToDoList.Domain.Services
 
             if (IsCategoryPropertiesNull(category))
                 throw new Exception("Cannot be add category with empty properties.");
+
+            if (GetCategories().
+                    Where(c => c.Title.
+                        Contains(category.Title)).
+                        Count() != 0)
+            {
+                throw new InvalidOperationException($"Category with name {category.Title} already exists.");
+            }
 
             var categoryEntity = _mapper.Map<TaskCategoryEntity>(category);
             _taskCategoryRepository.AddCategory(categoryEntity);

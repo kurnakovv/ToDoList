@@ -67,6 +67,10 @@ namespace ToDoList.UI
                     panel1.Visible = false;
                     MessageBox.Show($"The category \"{newCategory.Title}\" added.");
                 }
+                catch(InvalidOperationException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
