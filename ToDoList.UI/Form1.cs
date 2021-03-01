@@ -87,8 +87,11 @@ namespace ToDoList.UI
             // for new task the previous Id from oldTask.
             newTask.Id = oldTask.Id;
 
-            // Give id the current item in combobox.
-            newTask.CategoryId = comboBox1.SelectedValue.ToString();
+            if (comboBox1.SelectedItem != null)
+            {
+                // Give id the current item in combobox.
+                newTask.CategoryId = comboBox1.SelectedValue.ToString();
+            }
 
             if (dataGridView1.CurrentCell.Value == null)
             {
