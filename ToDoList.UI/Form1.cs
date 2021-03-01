@@ -31,8 +31,8 @@ namespace ToDoList.UI
             taskCategoryToolStripMenuItem.DropDownItemClicked += (s, a) => SortByCategory(a.ClickedItem.Text);
             taskCategoryToolStripMenuItem.Click += (s, a) => LoadTasks();
 
-            if (dataGridView1.CurrentCell != null)
-                panel1.Visible = true;
+            //if (dataGridView1.CurrentCell != null)
+            //    panel1.Visible = true;
         }
 
         private void LoadCategories()
@@ -213,6 +213,7 @@ namespace ToDoList.UI
                 _bindingSourceCurrentTask.List[0] = new TaskModel();
             }
             _bindingSourceCurrentTask.ResetItem(0);
+            panel1.Visible = true;
         }
 
         private void EnableEditPanel()
