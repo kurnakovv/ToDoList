@@ -29,7 +29,7 @@ namespace ToDoList.Data.Repositories
 
         public IEnumerable<TaskCategoryEntity> GetCategories()
         {
-            return _dbContext.TaskCategories.ToList();
+            return _dbContext.TaskCategories.Include(c => c.Tasks).ToList();
         }
 
         public TaskCategoryEntity UpdateCategory(TaskCategoryEntity category)
@@ -49,6 +49,7 @@ namespace ToDoList.Data.Repositories
 
             return category;
         }
+
         private void Save()
         {
             _dbContext.SaveChanges();

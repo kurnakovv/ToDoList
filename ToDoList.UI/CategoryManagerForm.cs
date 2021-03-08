@@ -21,7 +21,6 @@ namespace ToDoList.UI
             InitializeComponent();
 
             SetBindings();
-            Load += CategoryManagerForm_Load;
             LoadCategories();
         }
 
@@ -155,13 +154,21 @@ namespace ToDoList.UI
             _bindingSourceCurrentCategory.DataSource = new List<TaskCategoryModel> { new TaskCategoryModel() };
 
             textBox1.DataBindings.Add("Text", _bindingSourceCurrentCategory, nameof(TaskCategoryModel.Title));
+            //comboBox1.DataBindings.Add("Text", _bindingSourceCurrentCategory, nameof(TaskCategoryModel.Tasks));
         }
 
         private void SetCurrentCategory()
         {
             if (_bindingSourceCategories.Count > 0)
             {
-                _bindingSourceCurrentCategory.List[0] = TaskCategoryModel.GetCloneCategory((TaskCategoryModel)_bindingSourceCategories.Current);
+                var taskCategory = TaskCategoryModel.GetCloneCategory((TaskCategoryModel)_bindingSourceCategories.Current);
+                _bindingSourceCurrentCategory.List[0] = taskCategory;
+
+                comboBox1.Items.Clear();
+                foreach(TaskModel item in taskCategory.Tasks)
+                {
+                    comboBox1.Items.Add(item.Name);
+                }
             }
             else
             {
