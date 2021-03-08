@@ -53,6 +53,7 @@
             this.taskCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CategoryManagerBtn = new System.Windows.Forms.Button();
             this.ReloadCategories_Btn = new System.Windows.Forms.Button();
+            this.LoadCompletenessBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.CategoryMenu.SuspendLayout();
@@ -194,6 +195,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(443, 356);
             this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // Column1
             // 
@@ -282,12 +284,24 @@
             this.ReloadCategories_Btn.UseVisualStyleBackColor = false;
             this.ReloadCategories_Btn.Click += new System.EventHandler(this.ReloadCategories_Btn_Click);
             // 
+            // LoadCompletenessBtn
+            // 
+            this.LoadCompletenessBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.LoadCompletenessBtn.Location = new System.Drawing.Point(207, 0);
+            this.LoadCompletenessBtn.Name = "LoadCompletenessBtn";
+            this.LoadCompletenessBtn.Size = new System.Drawing.Size(110, 23);
+            this.LoadCompletenessBtn.TabIndex = 10;
+            this.LoadCompletenessBtn.Text = "Load completeness";
+            this.LoadCompletenessBtn.UseVisualStyleBackColor = false;
+            this.LoadCompletenessBtn.Click += new System.EventHandler(this.LoadCompletenessBtn_Click);
+            // 
             // ToDoList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.LoadCompletenessBtn);
             this.Controls.Add(this.ReloadCategories_Btn);
             this.Controls.Add(this.CategoryManagerBtn);
             this.Controls.Add(this.textBox4);
@@ -336,6 +350,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column4;
         private System.Windows.Forms.Button ReloadCategories_Btn;
+        private System.Windows.Forms.Button LoadCompletenessBtn;
     }
 }
 

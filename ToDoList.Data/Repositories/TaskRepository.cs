@@ -58,6 +58,11 @@ namespace ToDoList.Data.Repositories
             return returnedTask;
         }
 
+        public void UpdateCompleteness(TaskEntity task)
+        {
+            UpdateTask(task);
+        }
+
         public IEnumerable<TaskEntity> SortTasksByCategory(string categoryName)
         {
             IEnumerable<TaskEntity> tasks = _taskDbContext.Tasks.Where(t => 

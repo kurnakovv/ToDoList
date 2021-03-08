@@ -8,6 +8,7 @@ namespace ToDoList.Domain.Services.Abstract
         IEnumerable<TaskModel> GetAllTasks();
         TaskModel AddTask(TaskModel task);
         TaskModel UpdateTask(TaskModel task);
+        void UpdateCompleteness(TaskModel task, bool completeness);
         TaskModel GetTaskById(string id);
         IEnumerable<TaskModel> GetTasksByName(string name);
         void DeleteTaskById(string id);

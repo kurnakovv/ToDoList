@@ -8,6 +8,7 @@ namespace ToDoList.Data.Repositories.Abstract
         IEnumerable<TaskEntity> GetAllTasks();
         TaskEntity AddTask(TaskEntity task);
         TaskEntity UpdateTask(TaskEntity task);
+        void UpdateCompleteness(TaskEntity task);
         TaskEntity GetTaskById(string id);
         IEnumerable<TaskEntity> GetTasksByName(string name);
         void DeleteTaskById(string id);

@@ -113,6 +113,20 @@ namespace ToDoList.Domain.Services
             throw new Exception("Cannot be update empty task!");
         }
 
+        public void UpdateCompleteness(TaskModel task, bool completeness)
+        {
+            if (IsTaskNull(task))
+            {
+                throw new InvalidOperationException("Task cannot be empty");
+            }
+
+            task.Completeness = completeness;
+
+            var taskEntity = _mapper.Map<TaskEntity>(task);
+
+            _taskRepository.UpdateCompleteness(taskEntity);
+        }
+
         public void DeleteTaskById(string id)
         {
             if (!string.IsNullOrEmpty(id))

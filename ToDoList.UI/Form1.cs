@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using ToDoList.Domain.Models;
 using ToDoList.Domain.Services;
@@ -30,9 +32,6 @@ namespace ToDoList.UI
             dataGridView1.MouseClick += (s, a) => EnableEditPanel();
             taskCategoryToolStripMenuItem.DropDownItemClicked += (s, a) => SortByCategory(a.ClickedItem.Text);
             taskCategoryToolStripMenuItem.Click += (s, a) => LoadTasks();
-
-            //if (dataGridView1.CurrentCell != null)
-            //    panel1.Visible = true;
         }
 
         private void LoadCategories()
@@ -170,13 +169,18 @@ namespace ToDoList.UI
             textBox4.Text = string.Empty;
         }
 
+        private void LoadCompletenessBtn_Click(object sender, EventArgs e)
+        {
+            LoadColorsInTasks();
+        }
+
         private void LoadTasks()
         {
             try
             {
                 IEnumerable<TaskModel> tasks = _taskService.GetAllTasks();
                 _bindingSourceTasks.DataSource = tasks;
-
+                
                 // Protection against click on empty DataGridView
                 if (_bindingSourceTasks.Count != 0)
                 {
@@ -195,6 +199,28 @@ namespace ToDoList.UI
                 MessageBox.Show("Database not connected");
             }
         }
+
+        private void LoadColorsInTasks()
+        {
+            var row = 0;
+            foreach (TaskModel t in _taskService.GetAllTasks())
+            {
+                var currentRow = dataGridView1.Rows[row];
+
+                if (t.Completeness == true)
+                {
+                    currentRow.DefaultCellStyle.ForeColor = Color.Green;
+                }
+                else
+                {
+                    currentRow.DefaultCellStyle.ForeColor = Color.Black;
+                }
+                row++;
+            }
+            row = 0;
+        }
+
+        
 
         private void SetCurrentTask()
         {
@@ -253,6 +279,43 @@ namespace ToDoList.UI
         {
             taskCategoryToolStripMenuItem.DropDownItems.Clear();
             LoadCategories();
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                // Ignore clicks that are not on button cells.
+                if (e.RowIndex < 0 || e.ColumnIndex !=
+                    dataGridView1.Columns[Column4.Name].Index) return;
+
+                var task = _bindingSourceTasks.Current as TaskModel;
+
+                // Old completeness.
+                bool completeness = (bool)dataGridView1[4, e.RowIndex].Value;
+
+
+                var currentRow = dataGridView1.Rows[e.RowIndex];
+
+                // Change the currently selected completeness for new value.
+                if (completeness == false)
+                {
+                    completeness = true;
+                    currentRow.DefaultCellStyle.ForeColor = Color.Green;
+                    MessageBox.Show("Congratulations!");
+                }
+                else
+                {
+                    completeness = false;
+                    currentRow.DefaultCellStyle.ForeColor = Color.Black;
+                }
+
+                _taskService.UpdateCompleteness(task, completeness);
+            }
+            catch(InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
