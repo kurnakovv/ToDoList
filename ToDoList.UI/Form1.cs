@@ -74,6 +74,7 @@ namespace ToDoList.UI
             _bindingSourceTasks.MoveNext();
             SetCurrentTask();
             textBox1.Focus();
+            dataGridView1.Visible = false;
         }
 
         private void EditBtn_Click(object sender, EventArgs e)
@@ -98,6 +99,7 @@ namespace ToDoList.UI
                     _taskService.AddTask(newTask);
                     panel1.Visible = false;
                     MessageBox.Show($"The task \"{newTask.Name}\" added.");
+                    dataGridView1.Visible = true;
                 }
                 catch (Exception ex)
                 {

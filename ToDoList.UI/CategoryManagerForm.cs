@@ -50,6 +50,7 @@ namespace ToDoList.UI
             _bindingSourceCategories.MoveNext();
             SetCurrentCategory();
             textBox1.Focus();
+            dataGridView1.Visible = false;
         }
 
         private void UpdateBtn_Click(object sender, EventArgs e)
@@ -75,6 +76,7 @@ namespace ToDoList.UI
                 {
                     MessageBox.Show(ex.Message);
                 }
+                dataGridView1.Visible = true;
             }
             else
             {
