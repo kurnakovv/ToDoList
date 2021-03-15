@@ -33,13 +33,13 @@ namespace ToDoList.UI
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.DeleteBtn = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.UpdateBtn = new System.Windows.Forms.Button();
             this.AddBtn = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -56,6 +56,7 @@ namespace ToDoList.UI
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Title});
@@ -83,6 +84,24 @@ namespace ToDoList.UI
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(257, 216);
             this.panel1.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 55);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(36, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Tasks";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(4, 70);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(250, 21);
+            this.comboBox1.TabIndex = 4;
             // 
             // label1
             // 
@@ -133,24 +152,6 @@ namespace ToDoList.UI
             this.AddBtn.UseVisualStyleBackColor = false;
             this.AddBtn.Click += new System.EventHandler(this.AddBtn_Click);
             // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(4, 70);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(250, 21);
-            this.comboBox1.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 55);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Tasks";
-            // 
             // CategoryManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -161,7 +162,12 @@ namespace ToDoList.UI
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.CancelBtn);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(445, 489);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(445, 489);
             this.Name = "CategoryManagerForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CategoryManagerForm";
             this.Load += new System.EventHandler(this.CategoryManagerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
