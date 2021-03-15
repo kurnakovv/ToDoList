@@ -31,6 +31,7 @@ I use three-tiered architecture:
 - ToDoList.Data - layer for data storage
 - ToDoList.Domain - later for BL
 - ToDoList.Test - layer for tests
+- ToDoList.Mapping - layer for mapping objects and models with each other
 - ToDoList.UI - layer for user intrerface (WF)
 
 ## How to start
@@ -55,10 +56,19 @@ I use three-tiered architecture:
     }
 ```
 
+``` CS
+    internal class TaskCategoryDbContext : DbContext
+    {
+        public TaskCategoryDbContext() : base("ToDoList") { }
+        public DbSet<TaskCategoryEntity> TaskCategories { get; set; }
+    }
+```
+
 ## Versions
 - v1.0.0 - CRUD functional with user-friendly interface.
 - v1.0.1 - Added table of contents.
 - v1.0.2 - Edited task update system.
+- v2.0.0 - Add category management, task search, marking all completed tasks
 
 ## How to participate
 throw all your request in "pullRequests" branch
@@ -66,11 +76,13 @@ throw all your request in "pullRequests" branch
 ## Features
 - CRUD functional
 - User-friendly interface
+- Category management
+- Task menu
+- Marking all completed tasks
+- Task search
 
 ## To Do
-- Mark whether the task is completed or not
-- Task menu
-- Fix bug with task update
+- Empty
 
 ## Status
 I'm actively developing this project
