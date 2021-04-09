@@ -85,7 +85,7 @@ throw all your request in "pullRequests" branch
 - Empty
 
 ## Status
-I'm actively developing this project
+Project finished, accept pull requests
 
 ## Contributors:
 [![KurnakovMaksim](https://avatars.githubusercontent.com/u/59327306?v=3&s=100)](https://github.com/KurnakovMaksim) | <img src="https://avatars.githubusercontent.com/u/66691708" width="100" height="100"/> |
